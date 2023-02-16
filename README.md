@@ -2,6 +2,6 @@
 
 # Running the Application
 
-python3 -m venv .venv
+`python3 -m venv .venv
 pip3 install requirements.txt
-python app.py
+python app.py`
