@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}Home Page{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{url_for("static", filename="styles/index.css")}}"/>
+{% endblock %}
+
+{% block content %}
+<nav class="nav justify-content-center nav-justified sticky-top">
+    <a class="nav-link active" aria-current="page" href="/">Home</a>
+    <a class="nav-link" href="/reported-crimes">Reported Crimes</a>
+    <a class="nav-link" href="/profile">Profile</a>
+</nav>
+<div class="container">
+<div class="row text-center">
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Theft</h5>
+          <a href="/report-theft" class="btn btn-primary">Report -></a>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Harassment</h5>
+          <a href="#" class="btn btn-primary">Report -></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

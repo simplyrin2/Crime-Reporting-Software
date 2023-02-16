@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% from "_formhelpers.html" import render_field %}
+
+{% block title %}Login{% endblock %}
+
+{% block styles %}
+
+{% endblock %}
+
+{% block content %}
+<div class="container">
+<div class="row justify-content-center" style="height: 80vh;">
+    <div class="col align-self-center" style="max-width:fit-content; padding: 40px; background-color: rgb(255, 255, 255); border-radius: 10px; box-shadow: 0 5px 20px rgb(224, 224, 224);">
+        <h2 class="text-center" style="margin-bottom: 30px;">Login</h2>
+        <form method="POST" class="needs-validation">
+            {{ form.hidden_tag() }}
+            <dl>
+                {{ render_field(form.username,class_='form-control') }}
+                {{ render_field(form.password,class_='form-control') }}
+            <div class="d-grid">
+                {{ form.submit(class_="btn btn-primary") }}
+              </div>
+            </dl>
+        </form>
+        <a href="{{url_for('register')}}">Don't have an account? <strong>Sign up</strong></a>
+    </div>
+</div>
+</div>
+{% endblock %}
+

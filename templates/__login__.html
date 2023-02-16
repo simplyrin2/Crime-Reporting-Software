@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block styles %}
+
+{% endblock %}
+
+{% block content %}
+<div class="container">
+<div class="row justify-content-center" style="height: 80vh;">
+    <div class="col align-self-center" style="max-width:fit-content; padding: 40px; background-color: rgb(255, 255, 255); border-radius: 10px; box-shadow: 0 5px 20px rgb(224, 224, 224);">
+        <h2 class="text-center" style="margin-bottom: 30px;">Login</h2>
+        {% if error %}
+         <p id="error-message">
+            {{error}}
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16" id="close-icon">
+                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+            </svg>
+        </p>
+        {% endif %}
+        <form method="POST" action="/login" class="needs-validation" style="margin-bottom: 30px;">
+            {{ form.hidden_tag() }}
+            <div class="mb-3">
+                <label for="emailInput" class="form-label">Username</label>
+                {{ form.username(class_="form-control", id_="usernameInput") }}
+                <div class="invalid-feedback">
+                    Wrong username
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="passwordInput" class="form-label">Password</label>
+                <div class="invalid-feedback">
+                    Wrong password
+                </div>
+                <div class="valid-feedback">
+                </div>
+                {{ form.password(class_="form-control", id_="passwordInput") }}
+            </div>
+            <div class="d-grid">
+                {{ form.submit(class_="btn btn-primary") }}
+              </div>
+        </form>
+        <a href="{{url_for('register')}}">Don't have an account? <strong>Sign up</strong></a>
+    </div>
+</div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{url_for('static', filename='/scripts/error-message.js')}}"></script>
+{% endblock %}
+

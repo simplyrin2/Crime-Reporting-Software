@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}Reported Crimes{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{url_for("static", filename="styles/reported_crimes.css")}}"/>
+{% endblock %}
+
+{% block content %}
+<nav class="nav justify-content-center nav-justified sticky-top">
+    <a class="nav-link" href="/">Home</a>
+    <a class="nav-link active" aria-current="page" href="/reported-crimes">Reported Crimes</a>
+    <a class="nav-link" href="/profile">Profile</a>
+</nav>
+<div class="container">
+    <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Crime</th>
+            <th scope="col">Filing Date</th>
+            <th scope="col">Filing Time</th>
+            <th scope="col">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for fir in firs %}
+          <tr>
+            <th scope="row">{{loop.index}}</th>
+            <td>{{fir['__tablename__'].split('_')[0].title()}}<a href="/reported-crimes/{{fir['id']}}" style="text-decoration: none;">  -></a></td>
+            <td>{{fir['ftime'].strftime('%d %b %Y')}}</td>
+            <td>{{fir['ftime'].strftime('%I:%M %p')}}</td>
+            <td>
+              {% if action_list[loop.index-1]==3  %}
+              <span class="badge rounded-pill text-bg-danger">Rejected</span>
+              {% elif fir['closed']==1 %}
+              <span class="badge rounded-pill text-bg-dark">Closed</span>
+              {% elif action_list[loop.index-1]==1  %}
+              <span class="badge rounded-pill text-bg-secondary">Pending action</span>
+              {% elif action_list[loop.index-1]==2 %}
+              <span class="badge rounded-pill text-bg-warning">Under investigation</span>
+              {% endif %}
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+</div>
+{% endblock %}

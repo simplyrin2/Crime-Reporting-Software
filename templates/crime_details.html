@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+
+{% block title %}Reported Crimes{% endblock %}
+
+{% block styles %}
+
+{% endblock %}
+
+{% block content %}
+<nav class="nav justify-content-center nav-justified sticky-top">
+    <a class="nav-link" href="/">Home</a>
+    <a class="nav-link active" aria-current="page" href="/reported-crimes">Reported Crimes</a>
+    <a class="nav-link" href="/profile">Profile</a>
+</nav>
+<div class="container">
+    <a href="/reported-crimes"><span class="badge rounded-pill text-bg-light" style="padding: 8px; margin-bottom: 10px; font-weight: 500;"><- Back</span></a>
+    <h2>Crime Details</h2>
+    <table class="table table-borderless table-responsive" style="margin-top: 30px; margin-bottom: 30px;">
+        <tbody>
+          <tr>
+            <th scope="row">Crime</th>
+            <td>{{fir['__tablename__'].split('_')[0].title()}}</td>
+          </tr>
+          <tr>
+            <th scope="row">Report ID</th>
+            <td>{{fir['id']}}</td>
+          </tr>
+          <tr>
+            <th scope="row">Complainant Name</th>
+            <td>{{fir['cname']}}</td>
+          </tr>
+          <tr>
+            <th scope="row">Father's/Mother's Name</th>
+            <td>{{fir['pname']}}</td>
+          </tr>
+          <tr>
+            <th scope="row">Address</th>
+            <td>{{fir['address']}}</td>
+          </tr>
+          <tr>
+            <th scope="row">Mobile Number</th>
+            <td>{{fir['mob']}}</td>
+          </tr>
+          <tr>
+            <th scope="row">Email ID</th>
+            <td>{{fir['email']}}</td>
+          </tr>
+          <tr>
+            <th scope="row">Date</th>
+            <td>{{fir['datetime'].split(' ')[0]}}</td>
+          </tr>
+          <tr>
+            <th scope="row">Time</th>
+            <td>{{fir['datetime'].split(' ')[1]+" "+fir['datetime'].split(' ')[2]}}</td>
+          </tr>
+          <tr>
+            <th scope="row">Article</th>
+            <td>{{fir['aname']}}</td>
+          </tr>
+          <tr>
+            <th scope="row">Article Description</th>
+            <td>{{fir['description']}}</td>
+          </tr>
+
+          
+        </tbody>
+      </table>
+
+      <h2 style="margin-bottom: 20px;">Actions Taken</h2>
+      <table class="table table-responsive" style="margin-top: 30px; margin-bottom: 30px;">
+        <thead>
+          <th>Action</th>
+          <th>Timestamp</th>
+        </thead>
+        <tbody>
+          {% for action in actions %}
+          <tr>
+            <td>{{action}}
+              {% if remark!='' and action=='Rejected' %}
+              <br>Remarks: {{remarks}}
+              {% endif %}
+            </td>
+            <td>{{actions_timestamp[loop.index-1].strftime('%d %b %Y  %I:%M%p')}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+</div>
+{% endblock %}

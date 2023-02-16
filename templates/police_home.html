@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+
+{% block title %}Reported Crimes{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{url_for("static", filename="styles/reported_crimes.css")}}"/>
+{% endblock %}
+
+{% block content %}
+<nav class="nav justify-content-center nav-justified sticky-top">
+    <a class="nav-link active" aria-current="page" href="/police">Crime Reports</a>
+    <a class="nav-link" href="/police/profile">Profile</a>
+</nav>
+<div class="container">
+  <h2 style="margin-bottom: 20px;">New</h2>
+  {% if new|length == 0%}
+    <p>No new cases</p>
+  {% else %}
+    <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Crime</th>
+            <th scope="col">Report ID</th>
+            <th scope="col">Date</th>
+            <th scope="col">Time</th>
+            <th scope="col">Complainant Name</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for fir in new %}
+          <tr>
+            <th scope="row">{{loop.index}}</th>
+            <td>{{fir['__tablename__'].split('_')[0].title()}}<a href="/police/action-page/{{fir['id']}}" style="text-decoration: none;">  -></a></td>
+            <td>{{fir['id']}}</td>
+            <td>{{fir['ftime'].strftime('%Y-%m-%d %H:%M').split(' ')[0]}}</td>
+            <td>{{fir['ftime'].strftime('%Y-%m-%d %H:%M').split(' ')[1]}}</td>
+            <td>{{fir['cname']}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% endif %}
+    <h2 style="margin-bottom: 20px; margin-top: 30px;">Ongoing</h2>
+  {% if ongoing|length == 0%}
+    <p>No ongoing cases</p>
+  {% else %}
+    <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Crime</th>
+            <th scope="col">Report ID</th>
+            <th scope="col">Date</th>
+            <th scope="col">Time</th>
+            <th scope="col">Complainant Name</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for fir in ongoing %}
+          <tr>
+            <th scope="row">{{loop.index}}</th>
+            <td>{{fir['__tablename__'].split('_')[0].title()}}<a href="/police/action-page/{{fir['id']}}" style="text-decoration: none;">  -></a></td>
+            <td>{{fir['id']}}</td>
+            <td>{{fir['ftime'].strftime('%Y-%m-%d %H:%M').split(' ')[0]}}</td>
+            <td>{{fir['ftime'].strftime('%Y-%m-%d %H:%M').split(' ')[1]}}</td>
+            <td>{{fir['cname']}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% endif %}
+    <h2 style="margin-bottom: 20px; margin-top: 30px;">Closed</h2>
+  {% if closed|length == 0%}
+    <p>No closed cases</p>
+  {% else %}
+    <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Crime</th>
+            <th scope="col">Report ID</th>
+            <th scope="col">Date</th>
+            <th scope="col">Time</th>
+            <th scope="col">Complainant Name</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for fir in closed %}
+          <tr>
+            <th scope="row">{{loop.index}}</th>
+            <td>{{fir['__tablename__'].split('_')[0].title()}}<a href="/police/action-page/{{fir['id']}}" style="text-decoration: none;">  -></a></td>
+            <td>{{fir['id']}}</td>
+            <td>{{fir['ftime'].strftime('%Y-%m-%d %H:%M').split(' ')[0]}}</td>
+            <td>{{fir['ftime'].strftime('%Y-%m-%d %H:%M').split(' ')[1]}}</td>
+            <td>{{fir['cname']}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% endif %}
+</div>
+{% endblock %}

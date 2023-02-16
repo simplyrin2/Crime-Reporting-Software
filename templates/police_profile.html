@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Reported Crimes{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{url_for("static", filename="styles/reported_crimes.css")}}"/>
+{% endblock %}
+
+{% block content %}
+<nav class="nav justify-content-center nav-justified sticky-top">
+    <a class="nav-link" href="/police">Crime Reports</a>
+    <a class="nav-link active" aria-current="page" href="/police/profile">Profile</a>
+</nav>
+<div class="container text-center">
+    <button class="btn btn-danger"><a style="color: white;" href="/logout">Logout</a></button>
+    <h2 style="margin-top: 30px;">This page is still under construction👷‍♂️</h2>
+</div>
+{% endblock %}

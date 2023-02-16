@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+
+{% block title %}Report Theft{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{url_for("static", filename="styles/report-form.css")}}"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+{% endblock %}
+
+{% block content %}
+<nav class="nav justify-content-center nav-justified sticky-top">
+    <a class="nav-link active" aria-current="page" href="/">Home</a>
+    <a class="nav-link" href="/reported-crimes">Reported Crimes</a>
+    <a class="nav-link" href="/profile">Profile</a>
+</nav>
+<div class="container">
+  <h2 style="margin-bottom: 20px;">Report Form</h2>
+    <form action="/report-theft" method="POST" class="row g-4 needs-validation" novalidate>
+        <div class="col-md-4">
+          <label for="validationCustom01" class="form-label">Complainant's Name</label>
+          <input type="text" class="form-control" id="validationCustom01" name="cname" required>
+          <div class="invalid-feedback">
+            Required
+        </div>
+          <div class="valid-feedback">
+          </div>
+        </div>
+        <div class="col-md-4">
+            <label for="validationCustom02" class="form-label">Father's/Mother's Name</label>
+            <input type="text" class="form-control" id="validationCustom02" name="pname" required>
+            <div class="invalid-feedback">
+                Required
+            </div>
+            <div class="valid-feedback">
+            </div>
+        </div>
+        <div class="mb-1">
+            <label for="validationTextarea" class="form-label">Complainant's Address</label>
+            <textarea class="form-control" id="validationTextarea" placeholder="Present Address" name="address" required></textarea>
+            <div class="invalid-feedback">
+              Required
+            </div>
+        </div>
+        <div class="col-md-3">
+          <label for="validationCustom03" class="form-label">Complainant's Mobile Number</label>
+          <input type="text" class="form-control" id="validationCustom03" name="mob" required>
+          <div class="invalid-feedback">
+            Required
+          </div>
+        </div>
+        <div class="col-md-4">
+            <label for="validationCustom04" class="form-label">Complainant's Email ID</label>
+            <input type="text" class="form-control" id="validationCustom04" name="email" required>
+            <div class="invalid-feedback">
+              Required
+            </div>
+        </div>
+        <div class="col-md-4">
+          <label for="validationCustom05" class="form-label">Place of loss</label>
+          <input type="text" class="form-control" id="validationCustom05" name="place" required>
+          <div class="invalid-feedback">
+            Required
+          </div>
+        </div>
+        <div class="col-md-2">
+          <label for="validationCustom06" class="form-label">Date of theft</label>
+          <input type="text" class="form-control date" id="datepicker" name="date" required>
+          <div class="invalid-feedback">
+            Required
+          </div>
+        </div>
+        <div class="col-md-2">
+          <label class="form-label">Time(if known)</label>
+          <input type="text" class="time-pickable form-control" name="time">
+        </div>
+        <div class="col-md-4">
+          <label for="article_name" class="form-label">Article Lost</label>
+          <input type="text" class="form-control" id="article_name" name="aname" required>
+          <div class="invalid-feedback">
+              Required
+          </div>
+          <div class="valid-feedback">
+          </div>
+      </div>
+      <div class="mb-1">
+          <label for="Description" class="form-label">Article Description</label>
+          <textarea class="form-control" id="Description" placeholder="Article Description" name="description" required></textarea>
+          <div class="invalid-feedback">
+            Required
+          </div>
+      </div>
+        <div class="col-12">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+            <label class="form-check-label" for="invalidCheck">
+              Confirm Details
+            </label>
+            <div class="invalid-feedback">
+              You must confirm before submitting.
+            </div>
+          </div>
+        </div>
+        <div class="col-12">
+          <button class="btn btn-primary" type="submit">Submit form</button>
+        </div>
+      </form>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{url_for('static', filename='/scripts/theft_form_validation.js')}}"></script>
+<script src="{{url_for('static', filename='/scripts/time_picker.js')}}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $('#datepicker').datepicker();
+    });
+ </script>
+{% endblock %}
+
